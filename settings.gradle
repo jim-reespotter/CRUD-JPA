@@ -1,0 +1,4 @@
+rootProject.name = 'CRUD-JPA'
+
+include 'backend'
+include 'frontend'

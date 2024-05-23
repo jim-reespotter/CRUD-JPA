@@ -1,0 +1,30 @@
+buildscript {
+  repositories {
+    gradlePluginPortal()
+  }
+
+  dependencies {
+    classpath "com.github.node-gradle:gradle-node-plugin:3.1.1"
+  }
+}
+
+apply plugin: 'com.github.node-gradle.node'
+
+task appNpmInstall(type: NpmTask) {
+    args = ['install']
+}
+
+task appNpmBuild(type: NpmTask) {
+    args = ['run', 'build']
+}
+
+task copyWebApp {
+    doLast {
+        copy {
+            from 'dist/frontend/browser' into '../backend/src/main/resources/static'
+        }
+    }
+}
+
+appNpmBuild.dependsOn appNpmInstall
+copyWebApp.dependsOn appNpmBuild
