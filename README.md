@@ -27,4 +27,5 @@ This is an example of a simple Angular front-end/Springboot backend webapp
 
 ### Other points:
 - ng is ```frontend/node_modules/.bin/ng```
-- had to install material theme (```ng add @anguklar/material``` in frontend)
+- had to install material theme (```ng add @angular/material``` in frontend)
+- If you want to debug stuff, run Springboot, then ```ng serve``` the frontend + browse to http://localhost:4200 - there's a proxy for /api through to the backend

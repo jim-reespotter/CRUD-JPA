@@ -1,7 +1,12 @@
 <h1>App: {{ title }}</h1>
 
-<div  >
-<table mat-table matSort matSortActive="name" matSortDirection="asc" [dataSource]="persons" #deviceTable>
+@if (persons == null) {
+  <mat-spinner></mat-spinner>
+}
+@if (persons != null) {
+<div class="mat-elevation-z8">
+
+<table mat-table [dataSource]="persons">
 
   <ng-container matColumnDef="id">
     <th mat-header-cell *matHeaderCellDef>ID</th>
@@ -21,5 +26,6 @@
   <tr mat-header-row *matHeaderRowDef="['id', 'firstname', 'lastname']"></tr>
   <tr mat-row *matRowDef="let row; columns: ['id', 'firstname', 'lastname'];"></tr>
 </table>
-
 </div>
+}
+<mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>

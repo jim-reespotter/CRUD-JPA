@@ -16,7 +16,11 @@ export class RestService {
 
   constructor(private http: HttpClient) { }
 
-  getPersons(): Observable<Person[]> {
-    return this.http.get<Person[]>("/api/person");
+  getPersons(pageIndex: number, pageSize: number): Observable<Person[]> {
+    return this.http.get<Person[]>("/api/person?start="+pageIndex+"&size="+pageSize);
+  }
+
+  getPersonCount():Observable<number> {
+    return this.http.get<number>("/api/person/count");
   }
 }
