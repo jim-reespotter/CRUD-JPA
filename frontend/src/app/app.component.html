@@ -11,7 +11,7 @@
     <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
   </mat-form-field>
 
-<table mat-table [dataSource]="dataSource">
+<table mat-table [dataSource]="dataSource" matSort (matSortChange)="applySort(sort)" >
 
   <ng-container matColumnDef="id">
     <th mat-header-cell *matHeaderCellDef>ID</th>
@@ -19,12 +19,12 @@
   </ng-container>
 
   <ng-container matColumnDef="firstname">
-    <th mat-header-cell *matHeaderCellDef>first name</th>
+    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by first name">first name</th>
     <td mat-cell *matCellDef="let person"> {{ person.firstname }}</td>
   </ng-container>
   
   <ng-container matColumnDef="lastname">
-    <th mat-header-cell *matHeaderCellDef>last name</th>
+    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by last name">last name</th>
     <td mat-cell *matCellDef="let person">{{ person.lastname }}</td>
   </ng-container>
 
