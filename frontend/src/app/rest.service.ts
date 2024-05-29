@@ -21,8 +21,8 @@ export class RestService {
     
     return this.http.get<Person[]>("/api/person?start="+pageIndex+"&size="+pageSize
        +(filter != null ? "&filter="+filter : "")
-       +(sort != null ? "&sort="+sort.active : "")
-       +(sort != null && sort.direction == 'desc' ? "&desc" : "")
+       +(sort != null && sort.active != null ? "&sort="+sort.active : "")
+       +(sort != null && sort.active != null && sort.direction == 'desc' ? "&desc" : "")
     );
   }
 
