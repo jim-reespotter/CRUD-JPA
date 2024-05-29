@@ -8,6 +8,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -54,5 +56,16 @@ public class PersonController {
         );
         else
             return pRepo.count();
+    }
+
+    @GetMapping("details")
+    public Optional<Person> getPersonDetails(@RequestParam("id") Integer id) {
+        
+        return pRepo.findById(id);
+    }
+    
+    @PutMapping("update")
+    public Person updatePerson(@RequestBody Person person) {
+        return pRepo.save(person);
     }
 }

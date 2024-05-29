@@ -31,4 +31,12 @@ export class RestService {
       +(filter != null && filter != "" ? "?filter="+filter : "")
     );
   }
+
+  getPerson(id: string): Observable<Person> {
+    return this.http.get<Person>("/api/person/details?id="+id);
+  }
+
+  updatePerson(person: Person): Observable<Person> {
+    return this.http.put<Person>("/api/person/update", person);
+  }
 }
