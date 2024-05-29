@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { RouterModule, RouterOutlet } from '@angular/router';
+import { Router, RouterModule, RouterOutlet } from '@angular/router';
 import { Person, RestService } from '../rest.service';
 
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -36,7 +36,7 @@ export class ListComponent implements AfterViewInit {
   filter: string;
   sortState: Sort;
 
-  constructor(private rest: RestService) {}
+  constructor(private rest: RestService, private router: Router) {}
 
   ngAfterViewInit(): void {
 
@@ -80,5 +80,9 @@ export class ListComponent implements AfterViewInit {
   applySort(sortState: Sort) {
     this.sortState = sortState;
     this.getData();
+  }
+
+  showDetail(person: Person) {
+    this.router.navigate(["detail", person.id]); //, person.id]);
   }
 }

@@ -9,7 +9,8 @@
     <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
   </mat-form-field>
 
-<table mat-table [dataSource]="dataSource" matSort (matSortChange)="applySort(sort)" >
+<table mat-table [dataSource]="dataSource" matSort (matSortChange)="applySort(sort)" 
+      class="mat-elevation-z8 demo-table">
 
   <ng-container matColumnDef="id">
     <th mat-header-cell *matHeaderCellDef>ID</th>
@@ -27,7 +28,10 @@
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="['id', 'firstname', 'lastname']"></tr>
-  <tr mat-row *matRowDef="let row; columns: ['id', 'firstname', 'lastname'];"></tr>
+  <tr 
+      mat-row *matRowDef="let row; columns: ['id', 'firstname', 'lastname'];"
+      (click)="showDetail(row)"
+  ></tr>
 </table>
 </div>
 }

@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'details',
@@ -11,4 +12,9 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
     styleUrl: './details.component.css',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DetailsComponent { }
+export class DetailsComponent { 
+
+    constructor(private route: ActivatedRoute) {
+        console.log(this.route.snapshot.paramMap.get('id'));
+    }
+}

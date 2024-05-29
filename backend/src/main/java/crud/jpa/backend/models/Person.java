@@ -15,6 +15,10 @@ public class Person {
     private String firstname;
     private String lastname;
 
+    public int getId() {
+        return id;
+    }
+
     public String getFirstname() {
         return firstname;
     }
