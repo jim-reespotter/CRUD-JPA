@@ -10,6 +10,8 @@
     <input matInput [(ngModel)]="person.lastname" />
 </mat-form-field>
 <button mat-button (click)="update()">Update details</button>
+
+<button mat-button (click)="openDialog()">In new dialog</button>
 }
 @else {
     <mat-spinner></mat-spinner>

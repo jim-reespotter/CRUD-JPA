@@ -6,6 +6,9 @@ import { Person, RestService } from '../rest.service';
 import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogComponent } from './dialog/dialog.component'
+
 
 @Component({
     selector: 'app-details', // needs app- or will be folded !?!?
@@ -25,21 +28,36 @@ export class DetailsComponent implements OnInit {
 
     person: Person;
 
-    constructor(private route: ActivatedRoute, private rest: RestService) {
+    constructor(
+        private route: ActivatedRoute, 
+        private rest: RestService,
+        private dialog: MatDialog
+    ) {}
+    
+    ngOnInit(): void {
         let id = this.route.snapshot.paramMap.get('id');
         if (id != null) 
             this.rest.getPerson(id).subscribe(
                 person => {this.person = person;}
             );
     }
-    
-    ngOnInit(): void {
- 
-    }
 
     update() {
         this.rest.updatePerson(this.person).subscribe(
             person => {this.person = person}
         );
+    }
+
+    openDialog() {
+        const dialogRef = this.dialog.open(
+            DialogComponent, {data: this.person}
+        );
+      
+          dialogRef.afterClosed().subscribe(
+            result => {
+              this.ngOnInit();
+            }
+          );
+      
     }
 }
